@@ -1,0 +1,5 @@
+home.php -- top 3 lines
+
+<?php include("./head.inc"); ?>
+<div class="map_container">
+<?php include("./game/game.inc"); ?>
