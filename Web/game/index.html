@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<link href="css/jquery-ui.css" rel="stylesheet"/>
+
+<html>
+<head>
+    <title>Reconesse game</title>
+</head>
+<body>
+<button id="play" type="button">Play the game!</button>
+<button id="test" type="button">test</button>
+
+<div id="chooseCharacterDialog" title="Choose a character">
+    <ul>
+        <li>Amelia Earhart - Aviatrix</li>
+        <li>Hypatia of Alexandria - Philosopher</li>
+        <li>Policarpa - Spy</li>
+        <button id="startGame" type="button">Start your journey!</button>
+    </ul>
+</div>
+
+<div id="levelDialog" title="Level">
+    <!--<h1>Europe</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec accumsan arcu, eget ullamcorper urna. Donec venenatis volutpat commodo. Nunc auctor faucibus volutpat. Proin sed tincidunt dui. Sed et laoreet ipsum, eu tempor est. Nullam suscipit euismod lacus at elementum. Donec eu interdum neque. Integer a risus eget urna interdum dictum a in nibh. Donec sit amet leo elit. Donec leo lectus, porttitor at tellus a, sollicitudin pulvinar quam.</p>
+
+    <button id="level1" type="button">Yeah!</button>
+    -->
+</div>
+
+<div id="L1questionDialog" title="Level 1">
+    <h1>Europe</h1>
+    <p>Sappho is the most famous female poet of Europe. What did she most often write about?</p>
+    <ol>
+        <li>Maternal love</li>
+        <li>Her patriotism</li>
+        <li>Her love and desire for other women</li>
+        <li>Her aspirations to found a school for girls</li>
+    </ol>
+</div>
+
+<script id="level-template" type="text/x-handlebars-template">
+    <h1>{{title}}</h1>
+    <p>{{description}}</p>
+    <button id="start-level" type="button">Yeah!</button>
+</script>
+</body>
+</html>
+
+<script src="javascripts/jquery-1.10.1.js"></script>
+<script src="javascripts/jquery-ui.js"></script>
+<script src="javascripts/handlebars.js"></script>
+<script src="javascripts/game.js"></script>
