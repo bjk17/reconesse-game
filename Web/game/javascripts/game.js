@@ -1,4 +1,7 @@
-var apiUrl = 'http://localhost/django';
+//~ bjarni: http://127.0.0.1:8000
+//~ inga: http://localhost/django
+var apiUrl = '';
+
 var currentLevel = 1;
 var questionsInLevel;
 var currentAnswers;
@@ -21,6 +24,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#startGame', function () {
+        console.log(apiUrl);
         $("#chooseCharacterDialog").dialog("close");
         $("#questionDialog").dialog("close");
         $.getJSON(apiUrl + '/api/level/' + currentLevel + '/', { format: "json"})
