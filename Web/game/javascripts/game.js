@@ -1,20 +1,24 @@
 //~ bjarni: http://127.0.0.1:8000
 //~ inga: http://localhost/django
-var apiUrl = '';
+var apiUrl = 'http://localhost/django';
 
 var currentLevel = 1;
 var questionsInLevel;
 var currentAnswers;
+var characterChosen = false;
+var lastLatitude;
+var lastLongitude;
+var numberOfQuestionsInLevel = 10;
 
 $(document).ready(function () {
     $("#chooseCharacterDialog").dialog({
-        autoOpen: false
+        autoOpen: false, position: [ 1000, 50]
     });
     $("#levelDialog").dialog({
-        autoOpen: false
+        autoOpen: false, position: [ 1000, 50]
     });
     $("#questionDialog").dialog({
-        autoOpen: false
+        autoOpen: false, position: [ 1000, 50]
     });
 
     $("#play").click(function () {
@@ -26,14 +30,53 @@ $(document).ready(function () {
     $(document).on('click', '#startGame', function () {
         console.log(apiUrl);
         $("#chooseCharacterDialog").dialog("close");
+
+        if (!characterChosen) {
+            var startLocation = new google.maps.LatLng(65, -165);
+
+            lastLatitude = 65;
+            lastLongitude = -150;
+
+            var image = {
+                url: 'http://localhost/game/img/characters/EarhartSmall.png',
+                size: new google.maps.Size(80, 112)
+            };
+
+            var markerImage = new google.maps.Marker({
+                position: startLocation,
+                map: map,
+                icon: image,
+                title: 'Avatar'
+            });
+
+            characterChosen = true;
+        }
         $("#questionDialog").dialog("close");
         $.getJSON(apiUrl + '/api/level/' + currentLevel + '/', { format: "json"})
             .done(function (data) {
 
-                questionsInLevel = shuffle(data.questions).splice(0,10);
-                console.log(questionsInLevel);
-                console.log(data.questions);
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(data.latitude, data.longitude),
+                    map: map,
+                    title: 'Hello World!'
+                });
+
+                var line = new google.maps.Polyline({
+                    path: [new google.maps.LatLng(lastLatitude, lastLongitude), new google.maps.LatLng(data.latitude, data.longitude)],
+                    strokeColor: "#FF0000",
+                    strokeOpacity: 1.0,
+                    strokeWeight: 10,
+                    clickable: false,
+                    map: map
+                });
+
+                lastLatitude = data.latitude;
+                lastLongitude = data.longitude;
+
+                questionsInLevel = shuffle(data.questions).splice(0, numberOfQuestionsInLevel);
+
                 var source = $("#level-template").html();
+
                 var template = Handlebars.compile(source);
                 var html = template(data);
 
@@ -62,6 +105,8 @@ $(document).ready(function () {
                     $("#questionDialog").dialog("close");
                     $("#levelDialog").dialog("close");
                     $("#questionDialog").html(html);
+                    var questionNumber = numberOfQuestionsInLevel - questionsInLevel.length;
+                    $("#questionDialog").dialog('option', 'title', 'Question ' + questionNumber + ' of ' + numberOfQuestionsInLevel)
                     $("#questionDialog").dialog("open");
 
                 }).fail(function (jqxhr, textStatus, error) {
@@ -78,19 +123,21 @@ $(document).ready(function () {
     $(document).on('click', '#answers a', function () {
         var index = $("#answers a").index(this);
 
-        if (currentAnswers[index].rightAnswer) {
-            $(this).css("color", "green");
-            if (questionsInLevel.length == 0) {
-                currentLevel = currentLevel+1;
-                $("#nextLevel").show();
+        if ($(this).attr('href') !== undefined) {
+            if (currentAnswers[index].rightAnswer) {
+                $(this).css("color", "green");
+                $("#answers a").removeAttr('href');
+                if (questionsInLevel.length == 0) {
+                    currentLevel = currentLevel + 1;
+                    $("#nextLevel").show();
+                }
+                else {
+                    $("#nextQuestion").show();
+                }
+            } else {
+                $(this).css("color", "red");
             }
-            else {
-                $("#nextQuestion").show();
-            }
-        } else {
-            $(this).css("color", "red");
         }
-
     });
 });
 

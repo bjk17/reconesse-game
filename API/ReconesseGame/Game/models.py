@@ -4,6 +4,8 @@ from django.db import models
 class Level(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
+    latitude = models.DecimalField(max_digits=20, decimal_places=17)
+    longitude = models.DecimalField(max_digits=20, decimal_places=17)
     def __unicode__(self):
         return self.title
 

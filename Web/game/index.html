@@ -6,9 +6,30 @@
 <html>
 <head>
     <title>Reconesse game</title>
+
+    <style type="text/css">
+        html {
+            height: 100%
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map-canvas {
+            height: 100%;
+            width: 1024px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
 </head>
 <body>
 <button id="play" type="button">Play the game!</button>
+
 
 <div id="chooseCharacterDialog" title="Choose a character">
     <ul>
@@ -45,10 +66,14 @@
     </div>
 </script>
 
+<div id="map-canvas"></div>
 </body>
 </html>
 
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX31GutMRHCj_5-blad5Zz7lZck8xdsGI&sensor=false"></script>
 <script src="javascripts/jquery-1.10.1.js"></script>
 <script src="javascripts/jquery-ui.js"></script>
 <script src="javascripts/handlebars.js"></script>
+<script src="javascripts/maps.js"></script>
 <script src="javascripts/game.js"></script>
+
