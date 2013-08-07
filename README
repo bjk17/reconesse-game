@@ -1,5 +1,8 @@
 Þegar sótt er þarf að commenta inn réttu línuna miðað við hvort að Ingibjörg eða Bjarni er að vinna í verkefninu. Þetta þarf að gera á þremur stöðum í eftirfarandi línum:
 
+Web/game/index.html
+-78/81
+
 Web/game/javascripts/game.js
 -1/2
 -43/44
