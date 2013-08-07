@@ -12,13 +12,13 @@ var numberOfQuestionsInLevel = 10;
 
 $(document).ready(function () {
     $("#chooseCharacterDialog").dialog({
-        autoOpen: false, position: [ 1000, 50]
+        closeOnEscape: false, autoOpen: false, position: [ 1000, 50]
     });
     $("#levelDialog").dialog({
-        autoOpen: false, position: [ 1000, 50]
+        closeOnEscape: false, autoOpen: false, position: [ 1000, 50]
     });
     $("#questionDialog").dialog({
-        autoOpen: false, position: [ 1000, 50]
+        closeOnEscape: false, autoOpen: false, position: [ 1000, 50]
     });
 
     $("#play").click(function () {
@@ -147,11 +147,8 @@ $(document).ready(function () {
         //~ If the player has answered to many wrong questions we want to provide
         //~ an link for the player to read more about the women.
         if (wrongAnswerCount >= 2) {
-            //~ alert is a placeholder
-            //~ alert("Please read more about her.");
-            
-            //~ Trying to append text/link at the bottom of question dialog.
-            $("#readMoreCarefully").html("Please read more about <i>insert name</i> <a href='http://example.org/'>here</a>.")
+            //~ Providing player with a link at the bottom of question dialog to read more about the women.
+            $("#readMoreCarefully").html("Please read more about <i>insert name</i> <a href='http://example.org/' target='_blank'>here</a>.")
         }
     });
 });

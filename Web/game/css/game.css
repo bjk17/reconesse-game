@@ -1,8 +1,9 @@
-#nextQuestion
-{
+#nextQuestion {
     display: none;
 }
-#nextLevel
-{
+#nextLevel {
     display: none;
+}
+.ui-dialog-titlebar-close {
+    visibility: hidden;
 }
