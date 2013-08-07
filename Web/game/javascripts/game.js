@@ -1,10 +1,10 @@
-//~ bjarni: http://127.0.0.1:8000
-//~ inga: http://localhost/django
-var apiUrl = 'http://localhost/django';
+//~ var apiUrl = 'http://localhost/django'; //inga
+//~ var apiUrl = 'http://localhost:8000'; //bjarni
 
 var currentLevel = 1;
 var questionsInLevel;
 var currentAnswers;
+var wrongAnswerCount=0;
 var characterChosen = false;
 var lastLatitude;
 var lastLongitude;
@@ -24,13 +24,15 @@ $(document).ready(function () {
     $("#play").click(function () {
         $(function () {
             $("#chooseCharacterDialog").dialog("open");
+            console.log("Choose Character Dialog: Open");
         });
     });
 
     $(document).on('click', '#startGame', function () {
         console.log(apiUrl);
         $("#chooseCharacterDialog").dialog("close");
-
+        console.log("Choose Character Dialog: Close");
+        
         if (!characterChosen) {
             var startLocation = new google.maps.LatLng(65, -165);
 
@@ -38,7 +40,8 @@ $(document).ready(function () {
             lastLongitude = -150;
 
             var image = {
-                url: 'http://localhost/game/img/characters/EarhartSmall.png',
+                //~ url: 'http://localhost:8000/game/img/characters/EarhartSmall.png', //inga
+                //~ url: 'img/characters/EarhartSmall.png', //bjarni
                 size: new google.maps.Size(80, 112)
             };
 
@@ -134,9 +137,21 @@ $(document).ready(function () {
                 else {
                     $("#nextQuestion").show();
                 }
+                wrongAnswerCount = 0; // New question means player hasn't anwsered wrong yet.
             } else {
                 $(this).css("color", "red");
+                wrongAnswerCount++;
             }
+        }
+        
+        //~ If the player has answered to many wrong questions we want to provide
+        //~ an link for the player to read more about the women.
+        if (wrongAnswerCount >= 2) {
+            //~ alert is a placeholder
+            //~ alert("Please read more about her.");
+            
+            //~ Trying to append text/link at the bottom of question dialog.
+            $("#readMoreCarefully").html("Please read more about <i>insert name</i> <a href='http://example.org/'>here</a>.")
         }
     });
 });
@@ -161,4 +176,3 @@ function shuffle(array) {
 
     return array;
 }
-

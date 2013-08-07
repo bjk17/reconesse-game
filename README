@@ -1,5 +1,8 @@
-home.php -- top 3 lines
+Þegar sótt er þarf að commenta inn réttu línuna miðað við hvort að Ingibjörg eða Bjarni er að vinna í verkefninu. Þetta þarf að gera á þremur stöðum í eftirfarandi línum:
 
-<?php include("./head.inc"); ?>
-<div class="map_container">
-<?php include("./game/game.inc"); ?>
+Web/game/javascripts/game.js
+-1/2
+-43/44
+
+API/ReconesseGame/ReconesseGame/settings.py
+-15/16

@@ -48,6 +48,7 @@
     <h1>{{title}}</h1>
 
     <p>{{description}}</p>
+    
     <button id="start-level" type="button">Yeah!</button>
 </script>
 
@@ -58,6 +59,9 @@
         {{#each answers}}
         <li><a href="#"> {{this.answer}} </a> <br> {{/each}}</li>
     </ol>
+    
+    <span id='readMoreCarefully'></span>
+    
     <div id="nextQuestion">
         <button id="start-level" type="button">Next question!</button>
     </div>
@@ -70,7 +74,10 @@
 </body>
 </html>
 
+<!--
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX31GutMRHCj_5-blad5Zz7lZck8xdsGI&sensor=false"></script>
+-->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script src="javascripts/jquery-1.10.1.js"></script>
 <script src="javascripts/jquery-ui.js"></script>
 <script src="javascripts/handlebars.js"></script>
