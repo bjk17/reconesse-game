@@ -1,76 +1,73 @@
 <!DOCTYPE html>
 
-<link href="css/game.css" rel="stylesheet"/>
 <link href="css/jquery-ui.css" rel="stylesheet"/>
+<link href="css/game.css" rel="stylesheet"/>
 
 <html>
 <head>
     <title>Reconesse game</title>
-
-    <style type="text/css">
-        html {
-            height: 100%
-        }
-
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        #map-canvas {
-            height: 100%;
-            width: 1024px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
-
 </head>
 <body>
-<button id="play" type="button">Play the game!</button>
 
-
-<div id="chooseCharacterDialog" title="Choose a character">
-    <ul>
-        <li>Amelia Earhart - Aviatrix</li>
-        <li>Hypatia of Alexandria - Philosopher</li>
-        <li>Policarpa - Spy</li>
-        <button id="startGame" type="button">Start your journey!</button>
-    </ul>
-</div>
-
-<div id="levelDialog" title="Level"></div>
-
-<div id="questionDialog" title="Question"></div>
-
-<script id="level-template" type="text/x-handlebars-template">
-    <h1>{{title}}</h1>
-
-    <p>{{description}}</p>
+    <button id="play" type="button">Play the game!</button>
     
-    <button id="start-level" type="button">Yeah!</button>
-</script>
-
-<script id="question-template" type="text/x-handlebars-template">
-    <p>{{question}}</p>
-
-    <ol id="answers">
-        {{#each answers}}
-        <li><a href="#"> {{this.answer}} </a> <br> {{/each}}</li>
-    </ol>
-    
-    <span id='readMoreCarefully'></span>
-    
-    <div id="nextQuestion">
-        <button id="start-level" type="button">Next question!</button>
+    <div id="chooseCharacterDialog" title="Choose a character">
+        <ul>
+<!--
+            <li>Amelia Earhart - Aviatrix</li>
+            <li>Hypatia of Alexandria - Philosopher</li>
+            <li>Policarpa - Spy</li>
+-->
+            <div id="characterLineUp">
+                <div class="characterProfiles" id="name1" style="background-image:url(img/characters/ch1.png)" onClick="characherClicked(this);"></div>
+                <div class="characterProfiles" id="name2" style="background-image:url(img/characters/ch2.png)"onClick="characherClicked(this);"></div>
+                <div class="characterProfiles" id="name3" style="background-image:url(img/characters/ch3.png)"onClick="characherClicked(this);"></div>
+                <div class="characterProfiles" id="name4" style="background-image:url(img/characters/ch4.png)"onClick="characherClicked(this);"></div>
+                <div class="characterProfiles" id="name5" style="background-image:url(img/characters/ch5.png)"onClick="characherClicked(this);"></div>
+                <div class="characterProfiles" id="name6" style="background-image:url(img/characters/ch6.png)"onClick="characherClicked(this);"></div>
+                <div class="characterProfiles" id="name7" style="background-image:url(img/characters/ch7.png)"onClick="characherClicked(this);"></div>
+                <div class="characterProfiles" id="name8" style="background-image:url(img/characters/ch8.png)"onClick="characherClicked(this);"></div>
+                <div class="characterProfiles" id="name9" style="background-image:url(img/characters/ch9.png)"onClick="characherClicked(this);"></div>
+            </div>
+            
+            <h1><span id="nameOfCharacter"></span></h1>
+            
+            <button id="startGame" type="button">Start your journey!</button>
+        </ul>
     </div>
-    <div id="nextLevel">
-        <button id="startGame" type="button">Next level!</button>
-    </div>
-</script>
+    
+    <div id="levelDialog" title="Level"></div>
+    
+    <div id="questionDialog" title="Question"></div>
+    
+    <script id="level-template" type="text/x-handlebars-template">
+        <h1>{{title}}</h1>
+        
+        <p>{{description}}</p>
+        
+        <button id="start-level" type="button">Yeah!</button>
+    </script>
+    
+    <script id="question-template" type="text/x-handlebars-template">
+        <p>{{question}}</p>
+        
+        <ol id="answers">
+            {{#each answers}}
+            <li><a href="#"> {{this.answer}} </a> <br> {{/each}}</li>
+        </ol>
+        
+        <span id='readMoreCarefully'></span>
+        
+        <div id="nextQuestion">
+            <button id="start-level" type="button">Next question!</button>
+        </div>
+        <div id="nextLevel">
+            <button id="startGame" type="button">Next level!</button>
+        </div>
+    </script>
+    
+    <div id="map-canvas"></div>
 
-<div id="map-canvas"></div>
 </body>
 </html>
 
@@ -85,4 +82,3 @@
 <script src="javascripts/handlebars.js"></script>
 <script src="javascripts/maps.js"></script>
 <script src="javascripts/game.js"></script>
-

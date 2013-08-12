@@ -1,3 +1,43 @@
+html {
+    height: 100%
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#play {
+}
+
+#characterLineUp {
+    float: right;
+    width: 282px;
+    height: 402px;
+}
+.characterProfiles {
+    float: right;
+    width: 80px;
+    height: 120px;
+    margin: 5px;
+    border: 2px solid grey;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#startGame{
+    display: none;
+}
+
+#map-canvas {
+    height: 100%;
+    width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#chooseCharacterDialog {
+    display: none;
+}
 #nextQuestion {
     display: none;
 }

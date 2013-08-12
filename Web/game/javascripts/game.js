@@ -6,19 +6,20 @@ var questionsInLevel;
 var currentAnswers;
 var wrongAnswerCount=0;
 var characterChosen = false;
+var characterImageUrl;
 var lastLatitude;
 var lastLongitude;
 var numberOfQuestionsInLevel = 10;
 
 $(document).ready(function () {
     $("#chooseCharacterDialog").dialog({
-        closeOnEscape: false, autoOpen: false, position: [ 1000, 50]
+        closeOnEscape: false, autoOpen: false, position: [ 600, 100], width: 564
     });
     $("#levelDialog").dialog({
-        closeOnEscape: false, autoOpen: false, position: [ 1000, 50]
+        closeOnEscape: false, autoOpen: false, position: [ 600, 100]
     });
     $("#questionDialog").dialog({
-        closeOnEscape: false, autoOpen: false, position: [ 1000, 50]
+        closeOnEscape: false, autoOpen: false, position: [ 600, 100]
     });
 
     $("#play").click(function () {
@@ -29,7 +30,6 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#startGame', function () {
-        console.log(apiUrl);
         $("#chooseCharacterDialog").dialog("close");
         console.log("Choose Character Dialog: Close");
         
@@ -39,10 +39,13 @@ $(document).ready(function () {
             lastLatitude = 65;
             lastLongitude = -150;
 
+            //~ Klippir framanaf strengnum "url(..." og aftan af ")".
+            var tURL = characterImageUrl;
+            tURL = tURL.substring(tURL.indexOf("img/"), tURL.length-1);
+            
             var image = {
-                //~ url: 'http://localhost:8000/game/img/characters/EarhartSmall.png', //inga
-                //~ url: 'img/characters/EarhartSmall.png', //bjarni
-                size: new google.maps.Size(80, 112)
+                url: tURL,
+                size: new google.maps.Size(80, 120)
             };
 
             var markerImage = new google.maps.Marker({
@@ -152,6 +155,13 @@ $(document).ready(function () {
         }
     });
 });
+
+//~ Functions used in index.html
+function characherClicked(item) {
+    characterImageUrl = $(item).css('background-image');
+    $("#nameOfCharacter").text($(item).attr("id"));
+    document.getElementById("startGame").style.display = 'inline';
+}
 
 //http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array-in-javascript
 function shuffle(array) {
