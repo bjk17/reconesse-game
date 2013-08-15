@@ -8,9 +8,6 @@ body {
     padding: 0;
 }
 
-#play {
-}
-
 #characterLineUp {
     float: right;
     width: 282px;
@@ -25,6 +22,11 @@ body {
     border-radius: 10px;
     cursor: pointer;
 }
+.characterProfiles:hover {
+    margin: 2px;
+    border: 5px solid black;
+}
+
 #startGame{
     display: none;
 }
